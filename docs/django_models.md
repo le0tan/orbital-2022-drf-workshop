@@ -89,7 +89,7 @@ ref: https://docs.djangoproject.com/en/4.0/ref/models/fields/#manytomanyfield
 - NOTE: unlike ForeignKey, no on_delete option is provided
     - because the underlying implementation is by creating a relational entity!
 - Example: Students <-> Courses, Group <-> User (later)
-    - ![[Orbital - Django Workshop/attachments/Pasted image 20220524192756.png]]
+    - ![](attachments/Pasted image 20220524192756.png)
 
 ### CRUD with Django Shell
 

@@ -26,7 +26,7 @@
 ## Django URL (i.e., Router) and View
 
 With your Django app properly initialized, you should see the following welcome page:
-![[Orbital - Django Workshop/attachments/Pasted image 20220519160407.png]]
+![](attachments/Pasted%20image%2020220519160407.png)
 Now let's briefly talk about how to setup a URL router in Django and display our own web page (or in Django terms, view)
 .
 
