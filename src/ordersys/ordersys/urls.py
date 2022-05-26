@@ -29,4 +29,5 @@ urlpatterns = [
     path('', lambda req: redirect('api/')),  # redirects the index URL to API root
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
 ]
