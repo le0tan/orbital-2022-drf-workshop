@@ -37,6 +37,10 @@
     * DateField
     * FileField
 
+Let's take `Course` model as an example:
+
+1. Create a new Python package `models` under `app/models` folder; create `course.py` with the following:
+
 ```python
 from django.db import models
 
@@ -48,6 +52,29 @@ class Course(models.Model):
     def __str__(self):
         return f'Course - {self.name} - ${self.price}'
 ```
+
+In `app/models/__init__.py`, add the following:
+
+```python
+from app.models.course import *
+```
+
+2. Register the model in Django admin: in `app/admin.py`
+
+```python
+from django.contrib import admin
+
+from app.models import Course
+
+# Register your models here.
+admin.site.register(Course)
+```
+
+3. Make migrations: `python manage.py makemigrations`
+4. Migrate: `python manage.py migrate`
+
+Then you should be able to access `localhost:8000/admin` to manage the Course model... but wait! What's our username and
+password? Glad you asked - you may use `python manage.py createsuperuser` to create the user.
 
 ### Common Field Options
 
@@ -96,48 +123,37 @@ ref: https://docs.djangoproject.com/en/4.0/ref/models/fields/#manytomanyfield
 ref: https://docs.djangoproject.com/en/4.0/intro/tutorial02/#playing-with-the-api
 
 ```python
->> > from app.models import Course, Order, OrderItem, Table
+>>> from app.models import Course, Order, OrderItem, Table
 # List objects
->> > Course.objects.all()
-< QuerySet[ < Course: Course - Chicken
-Rice - $3.5 >] >
+>>> Course.objects.all()
+<QuerySet [<Course: Course - Chicken Rice - $3.5>]>
 
 # Create
->> > c = Course(name='Big Mac', price=5.5)
->> > c.save()
->> > Course.objects.all()
-< QuerySet[ < Course: Course - Chicken
-Rice - $3.5 >, < Course: Course - Big
-Mac - $5.5 >] >
+>>> c = Course(name='Big Mac', price=5.5)
+>>> c.save()
+>>> Course.objects.all()                  
+<QuerySet [<Course: Course - Chicken Rice - $3.5>, <Course: Course - Big Mac - $5.5>]>
 
 # Read properties
->> > c.name
+>>> c.name
 'Big Mac'
 
 # Update object
->> > c.name = 'Big Big Mac'
->> > c.save()
->> > Course.objects.all()
-< QuerySet[ < Course: Course - Chicken
-Rice - $3.5 >, < Course: Course - Big
-Big
-Mac - $5.5 >] >
+>>> c.name = 'Big Big Mac'
+>>> c.save()
+>>> Course.objects.all()                                     
+<QuerySet [<Course: Course - Chicken Rice - $3.5>, <Course: Course - Big Big Mac - $5.5>]>
 
 # Delete object
->> > bbm = Course.objects.all()[1]
->> > bbm.delete()
+>>> bbm = Course.objects.all()[1]    
+>>> bbm.delete()
 (1, {'app.Course': 1})
->> > Course.objects.all()
-< QuerySet[ < Course: Course - Chicken
-Rice - $3.5 >] >
+>>> Course.objects.all()          
+<QuerySet [<Course: Course - Chicken Rice - $3.5>]>
 
 # Filter
->> > Order.objects.filter(status=Order.STATUS_DELIVERED)
-< QuerySet[ < Order: Order[1] - Table
-1 - D >, < Order: Order[2] - Table
-1 - D >] >
->> > Order.objects.filter(table__location='Left')
-< QuerySet[ < Order: Order[1] - Table
-1 - D >, < Order: Order[2] - Table
-1 - D >] >
+>>> Order.objects.filter(status=Order.STATUS_DELIVERED)
+<QuerySet [<Order: Order[1] - Table 1 - D>, <Order: Order[2] - Table 1 - D>]>
+>>> Order.objects.filter(table__location='Left')
+<QuerySet [<Order: Order[1] - Table 1 - D>, <Order: Order[2] - Table 1 - D>]>
 ```

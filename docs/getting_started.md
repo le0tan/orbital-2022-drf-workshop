@@ -7,8 +7,10 @@
 ### Create Django Project
 
 1. `python -m django --version` to check you have Django properly installed in your current environment.
-2. `django-admin startproject ordersys`
-3. `python manage.py runserver`
+2. `django-admin startproject ordersys` 
+3. `python manage.py migrate`
+4. (Optional) set `TIME_ZONE` in `settings.py` to `Asia/Singapore` or your local time zone
+5. `python manage.py runserver`
 
 ### Add Django Application
 

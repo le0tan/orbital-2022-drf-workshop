@@ -2,8 +2,8 @@ When we initialized this Django project, we were already prompted to create a su
 represented with a special model named `User`. Here's an example of creating a new user via shell:
 
 ```python
->> > from django.contrib.auth.models import User
->> > user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+>>> from django.contrib.auth.models import User
+>>> user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
 
 # At this point, user is a User object that has already been saved
 # to the database. You can continue to change its attributes
@@ -38,6 +38,13 @@ permissions by:
 * change: `user.has_perm('app.change_course')`
 * delete: `user.has_perm('app.delete_course')`
 * view: `user.has_perm('app.view_course')`
+
+```python
+>>> from django.contrib.auth.models import User
+>>> user = User.objects.get(username='leo')
+>>> user.has_perm('app.add_course')
+True
+```
 
 ### Custom Permissions
 
@@ -79,7 +86,7 @@ myuser = User.objects.get(username="myuser")
 myuser.groups.add(staff_group)
 
 # Check myuser has staff group's permissions
->> > myuser.has_perm("app.view_course")
+>>> myuser.has_perm("app.view_course")
 True
 ```
 

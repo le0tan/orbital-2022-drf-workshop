@@ -26,7 +26,7 @@ REST_FRAMEWORK = {
 
 * Get token
     * Request: `POST 127.0.0.1:8000/dj-rest-auth/login/`
-    * Response: `{"key": "bca51bf8aa94b4d20d962a30328c606d79310977"}`
+    * Response: `{"key": "bca51bf8aa94b4d20d962a30328c606d79310977"}`
 * Access API using token
     * Set header: `Authorization: Token <YOUR-TOKEN>`
 
