@@ -18,11 +18,12 @@ from django.shortcuts import redirect
 from django.urls import path, include
 from rest_framework import routers
 
-from app.apis import CourseViewSet, TableViewSet
+from app.apis import CourseViewSet, TableViewSet, OrderViewSet
 
 router = routers.DefaultRouter()
 router.register(r'courses', CourseViewSet)
 router.register(r'tables', TableViewSet)
+router.register(r'orders', OrderViewSet)
 
 urlpatterns = [
     path('', lambda req: redirect('api/')),  # redirects the index URL to API root
