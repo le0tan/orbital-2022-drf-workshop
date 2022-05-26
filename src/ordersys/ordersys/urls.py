@@ -16,9 +16,25 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
-from rest_framework import routers
+from rest_framework import routers, viewsets, serializers, permissions
+
+from app.models import Course
+
+
+class CourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = '__all__'
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 router = routers.DefaultRouter()
+router.register(r'courses', CourseViewSet)
 
 urlpatterns = [
     path('', lambda req: redirect('api/')),  # redirects the index URL to API root
