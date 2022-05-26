@@ -1,8 +1,6 @@
-db.sqlite3
-.idea
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/.gitignore
 /.idea/misc.xml
 /.idea/modules.xml
-/.idea/ordersys.iml
+/.idea/orbital-2022-drf-workshop.iml
 /.idea/vcs.xml
