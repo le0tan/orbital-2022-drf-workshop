@@ -16,22 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import redirect
 from django.urls import path, include
-from rest_framework import routers, viewsets, serializers, permissions
+from rest_framework import routers
 
-from app.models import Course
-
-
-class CourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Course
-        fields = '__all__'
-
-
-class CourseViewSet(viewsets.ModelViewSet):
-    queryset = Course.objects.all()
-    serializer_class = CourseSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
+from app.apis.course import CourseViewSet
 
 router = routers.DefaultRouter()
 router.register(r'courses', CourseViewSet)
